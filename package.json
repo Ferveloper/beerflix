@@ -15,7 +15,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "description": "An app to get quick access to the tastiest beers all around the world!",
-  "main": ".eslintrc.js",
+  "main": "src/entry.js",
   "dependencies": {},
   "repository": {
     "type": "git",
