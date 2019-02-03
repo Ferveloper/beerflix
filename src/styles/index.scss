@@ -1,0 +1,25 @@
+@import "variables";
+@import "responsive";
+@import "reset";
+@import "commons";
+@import "navbar";
+@import "mainSection";
+
+* {
+  font-family: 'Roboto', Verdana;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  grid-template-rows: minmax(max-content, 50px) 1fr;
+  grid-template-areas:
+    ". filter ."
+    ". main .";
+}
