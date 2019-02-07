@@ -1,7 +1,8 @@
 import striptags from 'striptags';
-// import escapeHtml from 'escape-html';
+import escapeHtml from 'escape-html';
 import { openHeader } from './ui';
 import api from './api';
+import defaultImg from './../images/default.jpg';
 
 const { getShows } = api();
 
@@ -12,7 +13,7 @@ const templateShow = ({ id, name, image, summary, principal }) => `
     </header>
     <div class="card-content">
       <div class="card-content-image">
-        <img src="${image.medium}">
+        <img src="${image ? image.medium : defaultImg}">
       </div>
       <div class="card-content-text">
         <p>${striptags(summary)}</p>
@@ -33,7 +34,7 @@ const templateShow = ({ id, name, image, summary, principal }) => `
 `;
 
 const renderShows = (element, shows) => {
-  const htmlShows = shows.slice(0, 10).map((show, index) => {
+  const htmlShows = shows.slice(0, 6).map((show, index) => {
     if (index < 2) {
       return templateShow({
         ...show,
@@ -56,8 +57,9 @@ export const renderDOMShows = async (query) => {
     const showSection = document.getElementById('show-section');
     renderShows(showSection, fetchShows);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 
 renderDOMShows();
+

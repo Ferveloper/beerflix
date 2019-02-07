@@ -12,17 +12,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.css$/,
-      //   use: ['style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         sourceMap: true,
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.scss$/,
         use: [
@@ -45,6 +34,13 @@ module.exports = {
         test: /\.js$/,
         use: 'babel-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {},
+        }, ],
       },
     ],
   },
