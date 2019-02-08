@@ -1,5 +1,4 @@
 import striptags from 'striptags';
-import escapeHtml from 'escape-html';
 import { openHeader } from './ui';
 import api from './api';
 import defaultImg from './../images/default.jpg';
