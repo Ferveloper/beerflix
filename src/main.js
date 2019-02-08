@@ -1,3 +1,4 @@
+import './favicons/favicons';
 import './styles/index.scss';
 import './js/ui';
 import './js/shows';
