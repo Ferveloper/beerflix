@@ -5,18 +5,21 @@ import defaultImage from './images/default.jpg';
 
 const { getShowsDetail } = api();
 
-const detailTemplate = ({ id, name, summary, image }) => `
-  <header id="${id}">
+const detailTemplate = ({ beerId, name, description, image }) => `
+  <header id="${beerId}">
+  <a href="./index.html"><button class="button">Back</button></a>
     <div class="title-section">
       <h1>${name}</h1>
     </div>
     <div class="image-container">
-      <img src="${image ? image.original : defaultImage}" />
+      <img src="${image ? image : defaultImage}" />
     </div>
   </header>
   <div class="content">
-    ${summary}
+    ${description}
+   <a href="./index.html"><button class="button">Back</button></a> 
   </div>
+  
 `;
 
 const renderDetail = async () => {

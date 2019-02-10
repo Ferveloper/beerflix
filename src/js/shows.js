@@ -5,27 +5,20 @@ import defaultImg from './../images/default.jpg';
 
 const { getShows } = api();
 
-const templateShow = ({ id, name, image, summary, principal }) => `
-  <div id="${id}" class="card ${principal ? 'principal' : 'secondary close'}">
+const templateShow = ({ beerId, name, image, description, likes, principal }) => `
+  <div id="${beerId}" class="card ${principal ? 'principal' : 'secondary close'}">
     <header class="card-header">
       <h2>${name}</h2>
     </header>
     <div class="card-content">
       <div class="card-content-image">
-        <img src="${image ? image.medium : defaultImg}">
+        <a href="./detail.html?id=${beerId}"><img src="${image ? image : defaultImg}"></a>
       </div>
       <div class="card-content-text">
-        <p>${striptags(summary)}</p>
+        <p>${striptags(description)}</p>
+        <a href="./detail.html?id=${beerId}"><button class="button">Show Details</button></a>
         <div class="rating-container">
-          <button class="icon">
-            <i class="fas fa-star"></i>
-          </button>
-          <button class="icon">
-            <i class="far fa-star"></i>
-          </button>
-          <button class="icon">
-            <i class="far fa-star"></i>
-          </button>
+            <i class="fas fa-thumbs-up"></i><span class="likes">${likes}</span>
         </div>
       </div>
     </div>
@@ -33,7 +26,7 @@ const templateShow = ({ id, name, image, summary, principal }) => `
 `;
 
 const renderShows = (element, shows) => {
-  const htmlShows = shows.slice(0, 6).map((show, index) => {
+  const htmlShows = shows.map((show, index) => {
     if (index < 2) {
       return templateShow({
         ...show,
