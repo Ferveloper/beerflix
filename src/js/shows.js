@@ -16,7 +16,7 @@ const templateShow = ({ beerId, name, image, description, likes, principal }) =>
       </div>
       <div class="card-content-text">
         <p>${striptags(description)}</p>
-        <a href="./detail.html?id=${beerId}"><button class="button">Show Details</button></a>
+        <p><a href="./detail.html?id=${beerId}"><button class="button primary">Show Details</button></a></p>
         <div class="rating-container">
             <i class="fas fa-thumbs-up"></i><span class="likes">${likes}</span>
         </div>
