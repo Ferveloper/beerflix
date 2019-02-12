@@ -173,69 +173,69 @@
     }
   }
 
-  @include desktop {
-    max-width: 300px;
-    overflow: hidden;
-    padding-bottom: 1em;
-    .card-content {
-      padding: 0;
-      .card-content-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        max-width: unset;
-        min-width: auto;
-        img {
-          height: 100%;
-        }
-      }
-    }
-    .rating-container {
-      display: none;
-    }
-    /* state */
-    .card-content-text,
-    .card-header {
-      transition: opacity .3s linear;
-      visibility: hidden;
-      opacity: 0;
-      h2 {
-        font-size: $header-h2;
-        color: $primary-color-text;
-      }
-    }
-    &:hover {
-      .card-header {
-        z-index: 1;
-        &:after {
-          display: none;
-        }
-      }
-      .card-content {
-        .card-content-image {
-          display: none;
-        }
-        p {
-          max-height: 200px;
-          overflow-y: auto;
-        }
-      }
-      .card-content-text,
-      .card-header {
-        visibility: visible;
-        opacity: 1;
-      }
-      &,
-      .card-header,
-      .card-content,
-      i {
-        background-color: $primary-text-color;
-        color: $primary-color-text;
-      }
-    }
-  }
+  // @include desktop {
+  //   max-width: 300px;
+  //   overflow: hidden;
+  //   padding-bottom: 1em;
+  //   .card-content {
+  //     padding: 0;
+  //     .card-content-image {
+  //       position: absolute;
+  //       top: 0;
+  //       left: 0;
+  //       right: 0;
+  //       bottom: 0;
+  //       max-width: auto;
+  //       min-width: auto;
+  //       img {
+  //         height: 100%;
+  //       }
+  //     }
+  //   }
+  //   .rating-container {
+  //     display: none;
+  //   }
+  //   /* state */
+  //   .card-content-text,
+  //   .card-header {
+  //     transition: opacity .3s linear;
+  //     visibility: hidden;
+  //     opacity: 0;
+  //     h2 {
+  //       font-size: $header-h2;
+  //       color: $primary-color-text;
+  //     }
+  //   }
+  //   &:hover {
+  //     .card-header {
+  //       z-index: 1;
+  //       &:after {
+  //         display: none;
+  //       }
+  //     }
+  //     .card-content {
+  //       .card-content-image {
+  //         display: none;
+  //       }
+  //       p {
+  //         max-height: 200px;
+  //         overflow-y: auto;
+  //       }
+  //     }
+  //     .card-content-text,
+  //     .card-header {
+  //       visibility: visible;
+  //       opacity: 1;
+  //     }
+  //     &,
+  //     .card-header,
+  //     .card-content,
+  //     i {
+  //       background-color: $primary-text-color;
+  //       color: $primary-color-text;
+  //     }
+  //   }
+  // }
 }
 
 .loader {
