@@ -15,7 +15,7 @@ const detailTemplate = ({ beerId, name, description, image, price, ingredients, 
     </div>
   </header>
   <div class="content">
-  <p><a href="./index.html"><button class="button primary">Back</button></a></p>
+  <p><a href="./index.html?search=${sessionStorage.getItem('beerName')}&year=${sessionStorage.getItem('beerYear')}"><button class="button primary">Back</button></a></p>
     <p>Price: $${price}</p>
     <p>First brewed: ${firstBrewed}</p>
     <h2>Description</h2>
@@ -29,7 +29,7 @@ const detailTemplate = ({ beerId, name, description, image, price, ingredients, 
     <h2>Brewer's Tips</h2>
     <p>${brewersTips}</p>
     <p>Likes: ${likes} <i class="fas fa-thumbs-up"></i><button id="like" class="button primary">I Like It!</button></p>
-    <p><a href="./index.html"><button class="button primary">Back</button></a></p>
+    <p><a href="./index.html?search=${sessionStorage.getItem('beerName')}&year=${sessionStorage.getItem('beerYear')}"><button class="button primary">Back</button></a></p>
     <h2>Comments</h2>
     <div id="quoteList">
     <p>${comment? comment.map(comment => `<p>${comment.dateComment}</p><p>${comment.comment}</p>`).join('') : []}</p>

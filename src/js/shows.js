@@ -45,7 +45,6 @@ const renderShows = (element, beers) => {
 export const renderDOMShows = async (query, year) => {
   try {
     const fetchShows = await getShows(query);
-    fetchShows.forEach(beer => console.log(beer.firstBrewed))
     const filterBeers = (year) ? fetchShows.filter(beer => beer.firstBrewed.substring(3, ) === year) : fetchShows;
     console.log('TCL: renderDOMShows -> filterBeers', filterBeers)
     console.log('TCL: renderDOMShows -> fetchShows', fetchShows)
@@ -56,5 +55,20 @@ export const renderDOMShows = async (query, year) => {
   }
 };
 
-renderDOMShows();
+console.log('window.location.search', window.location.search)
+
+  if (window.location.search) {
+	  
+	const [beerName, beerYear] = window.location.search.split('&').map(param => param.split('=')[1]);
+	  
+	sessionStorage.setItem('beerName', beerName);
+    sessionStorage.setItem('beerYear', beerYear);
+	
+    console.log('TCL: beerName', beerName)
+    console.log('TCL: beerYear', beerYear)
+	
+    renderDOMShows(sessionStorage.getItem('beerName'), sessionStorage.getItem('beerYear'));
+  } else {
+	  renderDOMShows();
+  }
 

@@ -4,12 +4,17 @@ const searchForm = document.querySelector('#search-form');
 const searchInput = document.querySelectorAll('.input.search');
 
 searchForm.addEventListener('submit', (evt) => {
-  const beerName = searchInput[0].value;
-  const beerYear = searchInput[1].value;
+
   evt.preventDefault();
-  if (beerName !== '' || beerYear !== '') {
-    console.log('TCL: beerName', beerName)
-    console.log('TCL: beerYear', beerYear)
-    renderDOMShows(beerName, beerYear);
+
+  sessionStorage.setItem('beerName', searchInput[0].value);
+  sessionStorage.setItem('beerYear', searchInput[1].value);
+
+  if (sessionStorage.getItem('beerName') !== '' || sessionStorage.getItem('beerYear') !== '') {
+
+    console.log('TCL: beerName', sessionStorage.getItem('beerName'))
+    console.log('TCL: beerYear', sessionStorage.getItem('beerYear'))
+
+    renderDOMShows(sessionStorage.getItem('beerName'), sessionStorage.getItem('beerYear'));
   }
 });

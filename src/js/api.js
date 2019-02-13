@@ -39,8 +39,9 @@ const api = (API_URL = 'https://web-bootcamp-exercise-beer-api-nijliozdcg.now.sh
         if (!response.ok) {
           throw 'Error';
         }
-        const quote = await response.json();
-        return quote;
+        const json = await response.json()
+        const likes = json.beer.likes;
+        return likes;
       } catch (e) {
         console.error(e);
         throw e;
