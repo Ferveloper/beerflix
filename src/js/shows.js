@@ -55,6 +55,9 @@ export const renderDOMShows = async (query, year) => {
   }
 };
 
+sessionStorage.setItem('beerName', '');
+sessionStorage.setItem('beerYear', '');
+
 console.log('window.location.search', window.location.search)
 
   if (window.location.search) {

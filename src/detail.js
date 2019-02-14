@@ -3,7 +3,7 @@ import api from './js/api';
 import './js/quoteForm';
 import defaultImage from './images/default.jpg';
 
-const { getShowsDetail, addLike, createQuote } = api();
+const { getShowsDetail, addLike, addComment } = api();
 
 const detailTemplate = ({ beerId, name, description, image, price, ingredients, firstBrewed, brewersTips, likes, comment }) => `
   <header id="${beerId}">
@@ -28,27 +28,33 @@ const detailTemplate = ({ beerId, name, description, image, price, ingredients, 
     <p><ul>${ingredients.hops.map(hops => `<li>${hops.name}: ${hops.amount.value} ${hops.amount.unit}, ${hops.add}, ${hops.attribute}</li>`).join('')}</ul></p>
     <h2>Brewer's Tips</h2>
     <p>${brewersTips}</p>
-    <p>Likes: ${likes} <i class="fas fa-thumbs-up"></i><button id="like" class="button primary">I Like It!</button></p>
+    <p>Likes: <span id="likes-count">${likes}</span> <i class="fas fa-thumbs-up"></i><button id="like" class="button primary">I Like It!</button></p>
     <p><a href="./index.html?search=${sessionStorage.getItem('beerName')}&year=${sessionStorage.getItem('beerYear')}"><button class="button primary">Back</button></a></p>
     <h2>Comments</h2>
     <div id="quoteList">
-    <p>${comment? comment.map(comment => `<p>${comment.dateComment}</p><p>${comment.comment}</p>`).join('') : []}</p>
+    <p>${comment ? comment.map(comment => `<p>${comment.dateComment.substring(0,10)}</p><p>${comment.comment}</p>`).join('') : []}</p>
     </div>
     </div>
 `;
 
 const renderDetail = async () => {
   try {
-    const [, id] = window.location.search ?
-      window.location.search.split('=') : [];
+    const [, id] = window.location.search ? window.location.search.split('=') : [];
     const show = await getShowsDetail(id);
     const showHTML = detailTemplate(show);
     document.getElementById('detail').innerHTML = showHTML;
-    const likeBtn = document.querySelector('#like')
-likeBtn.addEventListener('click', addLike())
+    const likeBtn = document.querySelector('#like');
+    const likesCount = document.querySelector('#likes-count');
+    likeBtn.addEventListener('click', async () => {
+      const likes = await addLike(id);
+      likesCount.innerHTML = likes;
+    })
+    
   } catch (e) {
     console.error(e);
   }
 };
 
 renderDetail();
+
+export { id, show }

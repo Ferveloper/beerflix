@@ -1,16 +1,13 @@
 import api from './api';
 
-const QUOTES_API = 
-  'https://quotes-api-ecoitpillp.now.sh/api/v1/quote/';
-
-const { createQuote } = api(QUOTES_API);
+const { getShowsDetail, addComment } = api();
 
 const quoteForm = document.getElementById('quote-form');
 const quoteInput = document.getElementById('quote');
 
-const quoteTemplate = (quote) => `
+const commentsTemplate = ({comment}) => `
   <div class="list-item">
-    <p>${quote}</p>
+    <p>${comment ? comment.map(comment => `<p>${comment.dateComment.substring(0,10)}</p><p>${comment.comment}</p>`).join('') : []}</p>
   </div>
 `;
 
@@ -21,9 +18,8 @@ quoteInput.addEventListener('change', (evt) => {
 quoteForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   try {
-    const [, id] = window.location.search ?
-      window.location.search.split('=') : [];
-    const quote = await createQuote(id, quoteInput.value);
+    const [, id] = window.location.search ? window.location.search.split('=') : [];
+    const comments = await addcomment(id, quoteInput.value);
     // const beer = await getBeer(id);
     document.getElementById('quoteList').innerHTML = quoteTemplate(quoteInput.value);
   } catch (e) {
@@ -31,3 +27,23 @@ quoteForm.addEventListener('submit', async (evt) => {
   }
 
 });
+
+const renderComments = async () => {
+  try {
+    const [, id] = window.location.search ? window.location.search.split('=') : [];
+    const show = await getShowsDetail(id);
+    const commentsHTML = commentsTemplate(show);
+    document.getElementById('quoteList').innerHTML = commentsHTML;
+    
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+renderComments();
+
+// const text = document.querySelector('.inputComment');
+// commentBtn.addEventListener('submit', async (e) => {
+// e.preventDefault();
+// const comments = await addComment(id, text)
+// })
