@@ -1,6 +1,5 @@
 
 .app-navbar {
-  background-color: $primary-color-dark;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,12 +8,32 @@
   top: 0;
   left: 0;
   right: 0;
-  max-height: 100px;
-  min-height: 50px;
+  height: 50px;
   z-index: 3;
   @include tablet {
     padding: 20px;
   }
+
+  .background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    max-width: 100vw;
+    height: 70px;
+    overflow: hidden;
+    @include tablet {
+      height: 90px;
+    }
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   a {
     font-size: $logo-font;
     color: $primary-color-text;
