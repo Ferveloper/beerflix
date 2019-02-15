@@ -88,7 +88,7 @@ ul {
     text-align: center;
     margin: 10px 0;
   }
-  .image-container {
+  .image-container, .likes-container {
     width: 100%;
     margin: 0 auto;
     @include desktop {
@@ -104,6 +104,18 @@ ul {
       }
     }
   }
+
+  .likes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+
+    p {
+      margin: 5px;
+    }
+  }
+
   .quotes-list {
     h2 {
       font-size: $header-h2;
@@ -118,7 +130,6 @@ ul {
     }
     p {
       font-style: italic;
-      padding: 20px 0;
     }
   }
   .content,
@@ -138,4 +149,18 @@ ul {
       margin: 10px 0;
     }
   }
+}
+
+.comment {
+
+  &.text {
+    background-color: lightgray;
+    padding: 5px 20px;
+  }
+
+  &.date p {
+    font-style: italic;
+    margin-bottom: 1px;
+  }
+
 }
