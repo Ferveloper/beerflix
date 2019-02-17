@@ -2,10 +2,10 @@ const navbar = document.getElementById('navbar');
 const searchIcon = document.getElementById('navbar-search');
 const closeIcon = document.getElementById('navbar-close');
 
-const toggle = elemento =>
+const toggle = element =>
   (removeClass, addClass) => {
-  elemento.classList.remove(removeClass);
-  elemento.classList.add(addClass);
+  element.classList.remove(removeClass);
+  element.classList.add(addClass);
 };
 
 const navbarVariable = toggle(navbar);
@@ -18,8 +18,8 @@ closeIcon.addEventListener('click', () =>
 
 const openHeader = (id) => (evt) => {
   console.log(evt);
-  const elemento = document.getElementById(id);
-  elemento.classList.toggle('close');
+  const element = document.getElementById(id);
+  element.classList.toggle('close');
 };
 
 export {
