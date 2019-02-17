@@ -1,14 +1,14 @@
 import striptags from 'striptags';
 import { openHeader } from './ui';
 import api from './api';
-import defaultImg from './../images/default.jpg';
+import defaultImg from '../images/default.jpg';
 
-const { getShows } = api();
+const { getBeers } = api();
 
-const templateShow = ({ beerId, name, image, description, likes, firstBrewed, price, index, principal }) => `
+const templateBeer = ({ beerId, name, image, description, likes, firstBrewed, price, index, principal }) => `
   <div id="${beerId}" class="card ${principal ? 'principal' : 'secondary close'}">
     <header class="card-header">
-      <h2>${index+1}. ${name}</h2>
+      <h2>${index + 1}. ${name}</h2>
     </header>
     <div class="card-content">
       <div class="card-content-image">
@@ -27,12 +27,12 @@ const templateShow = ({ beerId, name, image, description, likes, firstBrewed, pr
   </div>
 `;
 
-const renderShows = (element, beers) => {
+const renderBeers = (element, beers) => {
   const htmlBeers = beers.slice(0, 10).map((beer, index) => {
     if (index < 2) {
-      return templateShow({ ...beer, index, principal: true });
+      return templateBeer({ ...beer, index, principal: true });
     }
-    return templateShow({ ...beer, index, principal: false });
+    return templateBeer({ ...beer, index, principal: false });
   }).join('');
   element.innerHTML = htmlBeers;
   const headers = document.querySelectorAll('.card.secondary .card-header');
@@ -42,14 +42,12 @@ const renderShows = (element, beers) => {
   });
 };
 
-export const renderDOMShows = async (query, year) => {
+export const renderDOMBeers = async (query, year) => {
   try {
-    const fetchShows = await getShows(query);
+    const fetchShows = await getBeers(query);
     const filterBeers = (year) ? fetchShows.filter(beer => beer.firstBrewed.substring(3, ) === year) : fetchShows;
-    console.log('TCL: renderDOMShows -> filterBeers', filterBeers)
-    console.log('TCL: renderDOMShows -> fetchShows', fetchShows)
     const showSection = document.getElementById('show-section');
-    renderShows(showSection, filterBeers);
+    renderBeers(showSection, filterBeers);
   } catch (e) {
     console.error(e);
   }
@@ -58,20 +56,12 @@ export const renderDOMShows = async (query, year) => {
 sessionStorage.setItem('beerName', '');
 sessionStorage.setItem('beerYear', '');
 
-console.log('window.location.search', window.location.search)
-
-  if (window.location.search) {
-	  
-	const [beerName, beerYear] = window.location.search.split('&').map(param => param.split('=')[1]);
-	  
-	sessionStorage.setItem('beerName', beerName);
-    sessionStorage.setItem('beerYear', beerYear);
-	
-    console.log('TCL: beerName', beerName)
-    console.log('TCL: beerYear', beerYear)
-	
-    renderDOMShows(sessionStorage.getItem('beerName'), sessionStorage.getItem('beerYear'));
-  } else {
-	  renderDOMShows();
-  }
+if (window.location.search) {
+  const [beerName, beerYear] = window.location.search.split('&').map(param => param.split('=')[1]);
+  sessionStorage.setItem('beerName', beerName);
+  sessionStorage.setItem('beerYear', beerYear);
+  renderDOMBeers(sessionStorage.getItem('beerName'), sessionStorage.getItem('beerYear'));
+} else {
+  renderDOMBeers();
+}
 

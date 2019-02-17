@@ -1,10 +1,6 @@
 const navbar = document.getElementById('navbar');
-const navbarLogo = document
-  .querySelector('.navbar-logo');
-const searchIcon = document
-  .getElementById('navbar-search');
-const closeIcon = document
-  .getElementById('navbar-close');
+const searchIcon = document.getElementById('navbar-search');
+const closeIcon = document.getElementById('navbar-close');
 
 const toggle = elemento =>
   (removeClass, addClass) => {

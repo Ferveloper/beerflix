@@ -1,14 +1,13 @@
+import moment from 'moment';
+import striptags from 'striptags';
 import './styles/detail.scss';
 import api from './js/api';
-// import './js/quoteForm';
 import defaultImage from './images/default.jpg';
-import moment from 'moment'
-import striptags from 'striptags'
 
-const quoteForm = document.getElementById('quote-form');
-const quoteInput = document.getElementById('quote');
+const commentForm = document.getElementById('quote-form');
+const commentInput = document.getElementById('quote');
 
-const { getShowsDetail,  addLike,  addComment } = api();
+const { getBeerDetail, addLike, addComment } = api();
 
 const detailTemplate = ({ beerId, name, description, image, price, ingredients, firstBrewed, brewersTips, likes }) => `
   <header id="${beerId}">
@@ -44,18 +43,17 @@ const [, id] = window.location.search ? window.location.search.split('=') : [];
 
 const renderDetail = async () => {
   try {
-    const show = await getShowsDetail(id);
-    const showHTML = detailTemplate(show);
-    const commentsHTML = commentsTemplate(show);
-    document.getElementById('detail').innerHTML = showHTML;
+    const beer = await getBeerDetail(id);
+    const beerHTML = detailTemplate(beer);
+    const commentsHTML = commentsTemplate(beer);
+    document.getElementById('detail').innerHTML = beerHTML;
     document.getElementById('quoteList').innerHTML = commentsHTML;
     const likeBtn = document.querySelector('#like');
     const likesCount = document.querySelector('#likes-count');
     likeBtn.addEventListener('click', async () => {
       const likes = await addLike(id);
       likesCount.innerHTML = likes;
-    })
-
+    });
   } catch (e) {
     console.error(e);
   }
@@ -66,16 +64,17 @@ const commentsTemplate = ({comment}) => `
   <div class="comment date"><p>On ${moment(comment.dateComment).format('LLL')}:</p></div>
   <div class="comment text"><p>${striptags(comment.comment)}</p></div>`).join('') : []}`;
 
-quoteInput.addEventListener('change', (evt) => {
-  quoteInput.value = evt.target.value;
+commentInput.addEventListener('change', (evt) => {
+  commentInput.value = evt.target.value;
 });
 
-quoteForm.addEventListener('submit', async (evt) => {
+commentForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
-  console.log('SUBMIT!')
   try {
-    const beer = await addComment(id, quoteInput.value);
-    document.getElementById('quoteList').innerHTML = commentsTemplate(beer);
+    if (commentInput.value !== '') {
+      const beer = await addComment(id, commentInput.value);
+      document.getElementById('quoteList').innerHTML = commentsTemplate(beer);
+    }
   } catch (e) {
     console.error(e);
   }
@@ -83,23 +82,3 @@ quoteForm.addEventListener('submit', async (evt) => {
 });
 
 renderDetail();
-
-// const renderComments = async () => {
-//   try {
-//     const [, id] = window.location.search ? window.location.search.split('=') : [];
-//     const show = await getShowsDetail(id);
-//     const commentsHTML = commentsTemplate(show);
-//     document.getElementById('quoteList').innerHTML = commentsHTML;
-
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
-// renderComments();
-
-// const text = document.querySelector('.inputComment');
-// commentBtn.addEventListener('submit', async (e) => {
-// e.preventDefault();
-// const comments = await addComment(id, text)
-// })
