@@ -1,6 +1,14 @@
 <navbar id="navbar" class="app-navbar no-search">
   <div class="background-container">
-    <img src="../images/header-img.png" alt="" srcset="">
+    <picture>
+      <source srcset="../images/beers-header-1500.png 1500w"  
+      media="(min-width: 1201px)" >
+      <source srcset="../images/beers-header-1200.png 1200w"
+      media="(min-width: 993px)" >
+      <source srcset="../images/beers-header-992.png 992w"
+      media="(min-width: 768px)" >
+      <img src="../images/beers-header-500.png" alt="BeerFlix header"/>
+    </picture>
   </div>
   <div class="navbar-logo">
     <a href="/">BeerFlix</a>

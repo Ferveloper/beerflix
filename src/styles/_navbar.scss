@@ -13,6 +13,9 @@
   @include tablet {
     padding: 20px;
   }
+  @include desktop {
+    padding: 40px;
+  }  
 
   .background-container {
     position: fixed;
@@ -25,6 +28,9 @@
     overflow: hidden;
     @include tablet {
       height: 90px;
+    }
+    @include desktop {
+      height: 130px;
     }
     img {
       object-fit: cover;
