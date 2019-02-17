@@ -4,8 +4,8 @@ import './styles/detail.scss';
 import api from './js/api';
 import defaultImage from './images/default.jpg';
 
-const commentForm = document.getElementById('quote-form');
-const commentInput = document.getElementById('quote');
+const commentForm = document.getElementById('comment-form');
+const commentInput = document.getElementById('comment');
 
 const { getBeerDetail, addLike, addComment } = api();
 
@@ -24,8 +24,8 @@ const detailTemplate = ({ beerId, name, description, image, price, ingredients, 
   </header>
   <div class="content">
     <p><a href="./index.html?search=${sessionStorage.getItem('beerName')}&year=${sessionStorage.getItem('beerYear')}"><button class="button primary">Back</button></a></p>
-    <p>Price: $${price}</p>
-    <p>First brewed: ${firstBrewed}</p>
+    <p><span class="bold">Price</span>: $${price}</p>
+    <p><span class="bold">First brewed:</span> ${firstBrewed}</p>
     <h2>Description</h2>
       <p>${striptags(description)}</p>
     <h2>Ingredients</h2>
@@ -47,7 +47,8 @@ const renderDetail = async () => {
     const beerHTML = detailTemplate(beer);
     const commentsHTML = commentsTemplate(beer);
     document.getElementById('detail').innerHTML = beerHTML;
-    document.getElementById('quoteList').innerHTML = commentsHTML;
+    document.querySelectorAll('.loader').forEach(e => e.classList.toggle('loader'))
+    document.getElementById('commentList').innerHTML = commentsHTML;
     const likeBtn = document.querySelector('#like');
     const likesCount = document.querySelector('#likes-count');
     likeBtn.addEventListener('click', async () => {
@@ -73,7 +74,7 @@ commentForm.addEventListener('submit', async (evt) => {
   try {
     if (commentInput.value !== '') {
       const beer = await addComment(id, commentInput.value);
-      document.getElementById('quoteList').innerHTML = commentsTemplate(beer);
+      document.getElementById('commentList').innerHTML = commentsTemplate(beer);
     }
   } catch (e) {
     console.error(e);

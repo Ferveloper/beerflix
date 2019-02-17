@@ -15,8 +15,8 @@ const templateBeer = ({ beerId, name, image, description, likes, firstBrewed, pr
         <a href="./detail.html?id=${beerId}"><img src="${image ? image : defaultImg}"></a>
       </div>
       <div class="card-content-text">
-        <p>First Brewed: ${firstBrewed}</p>
-        <p>Price: $${price}</p>
+        <p><span class="bold">First Brewed:</span> ${firstBrewed}</p>
+        <p><span class="bold">Price:</span> $${price}</p>
         <p>${striptags(description)}</p>
         <p><a href="./detail.html?id=${beerId}"><button class="button primary">Show Details</button></a></p>
         <div class="rating-container">
@@ -46,7 +46,7 @@ export const renderDOMBeers = async (query, year) => {
   try {
     const fetchShows = await getBeers(query);
     const filterBeers = (year) ? fetchShows.filter(beer => beer.firstBrewed.substring(3, ) === year) : fetchShows;
-    const showSection = document.getElementById('show-section');
+    const showSection = document.getElementById('beers-section');
     renderBeers(showSection, filterBeers);
   } catch (e) {
     console.error(e);

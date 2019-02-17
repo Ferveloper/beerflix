@@ -64,8 +64,8 @@ ul {
       display: flex;
     }
     .detail-content,
-    .quote-form,
-    .quotes-list {
+    .comment-form,
+    .comments-list {
       display: none;
     }
   }
@@ -116,7 +116,7 @@ ul {
     }
   }
 
-  .quotes-list {
+  .comments-list {
     h2 {
       font-size: $header-h2;
     }
@@ -133,11 +133,11 @@ ul {
     }
   }
   .content,
-  .quote-form,
-  .quotes-list, {
+  .comment-form,
+  .comments-list, {
     width: 80%;
     margin: 20px auto;
-    .quote-input {
+    .comment-input {
       margin: 20px 0;
     }
     @include desktop {
@@ -152,15 +152,12 @@ ul {
 }
 
 .comment {
-
   &.text {
     background-color: lightgray;
     padding: 5px 20px;
   }
-
   &.date p {
     font-style: italic;
     margin-bottom: 1px;
   }
-
 }
