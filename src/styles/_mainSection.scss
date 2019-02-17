@@ -1,13 +1,12 @@
 .beers-section {
   grid-area: main;
-  & > div {
+
+  &>div {
     margin: 20px 0;
-    @include desktop {
-      margin: 0;
-    }
   }
+
   @include desktop {
-    margin: 20px 0 40px;
+    margin: 40px 0 40px;
     display: grid;
     grid-gap: 30px;
     grid-template-columns: 1fr;

@@ -35,7 +35,7 @@ ul {
 }
 
 .app-navbar {
-  .filter-container {
+  .filter-container, .navbar-icon, #search-form {
     display: none;
   }
 }
@@ -88,7 +88,7 @@ ul {
     text-align: center;
     margin: 10px 0;
   }
-  .image-container, .likes-container {
+  .image-container {
     width: 100%;
     margin: 0 auto;
     @include desktop {
