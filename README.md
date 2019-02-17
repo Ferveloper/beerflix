@@ -24,23 +24,23 @@ Data displayed on the app is taken from the following test API:
 
 - Get list of beers from API and show ten results at the home page.
 - Filter main results by text and/or year. After filtering, ten new results will be displayed.
-- Show each beer details page by clicking on 'Show details' button from beer card.
-- Add likes to a beer by clicking on 'I Like It!' button on the beer details page.
+- Show each beer details page by clicking on "Show Details" button from beer card.
+- Add likes to a beer by clicking on "I Like It!" button on the beer details page.
 - Add a comment about a beer in its details page by submitting a form.
 
 ## Prerequisites
 
 - Node for JavaScript execution.
 - npm for dependencies installation.
-- Modern web browser (Chrome or Firefox latest versions) is highly recommended.
+- Modern web browser (Chrome or Firefox latest versions are highly recommended).
 
 ## Usage
 
 ### Clone and install project
 
 ```bash
-git clone https://github.com/Ferveloper/nodepop.git
-cd nodepop
+git clone https://github.com/Ferveloper/beerflix.git
+cd beerflix
 npm i
 ```
 
